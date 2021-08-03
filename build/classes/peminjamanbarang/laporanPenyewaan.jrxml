@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6488f145-b6c3-401c-a729-643d992c91f9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     penyewaan.`no_penyewaan` AS penyewaan_no_penyewaan,
+     penyewaan.`id_penyewa` AS penyewaan_id_penyewa,
+     penyewaan.`tgl_sewa` AS penyewaan_tgl_sewa,
+     penyewaan.`tgl_pengembalian` AS penyewaan_tgl_pengembalian,
+     penyewaan.`tgl_dikembalikan` AS penyewaan_tgl_dikembalikan,
+     penyewaan.`total_biaya_sewa` AS penyewaan_total_biaya_sewa,
+     penyewaan.`status` AS penyewaan_status,
+     penyewaan.`penanggung_jawab` AS penyewaan_penanggung_jawab,
+     penyewa.`nama` AS penyewa_nama,
+     penyewa.`no_tlp` AS penyewa_no_tlp,
+     penyewa.`alamat` AS penyewa_alamat,
+     admin.`nama` AS admin_nama
+FROM
+     `penyewa` penyewa INNER JOIN `penyewaan` penyewaan ON penyewa.`id_penyewa` = penyewaan.`id_penyewa`
+     INNER JOIN `admin` admin ON penyewaan.`penanggung_jawab` = admin.`nip`]]>
+	</queryString>
+	<field name="penyewaan_no_penyewaan" class="java.lang.String"/>
+	<field name="penyewaan_id_penyewa" class="java.lang.String"/>
+	<field name="penyewaan_tgl_sewa" class="java.sql.Date"/>
+	<field name="penyewaan_tgl_pengembalian" class="java.sql.Date"/>
+	<field name="penyewaan_tgl_dikembalikan" class="java.lang.String"/>
+	<field name="penyewaan_total_biaya_sewa" class="java.lang.Integer"/>
+	<field name="penyewaan_status" class="java.lang.String"/>
+	<field name="penyewaan_penanggung_jawab" class="java.lang.String"/>
+	<field name="penyewa_nama" class="java.lang.String"/>
+	<field name="penyewa_no_tlp" class="java.lang.String"/>
+	<field name="penyewa_alamat" class="java.lang.String"/>
+	<field name="admin_nama" class="java.lang.String"/>
+	<group name="penyewaan_no_penyewaan">
+		<groupExpression><![CDATA[$F{penyewaan_no_penyewaan}]]></groupExpression>
+		<groupHeader>
+			<band height="37">
+				<frame>
+					<reportElement uuid="c457574a-3bd2-422c-9173-3b700e00b78f" mode="Opaque" x="-21" y="7" width="597" height="24" forecolor="#B89F7D" backcolor="#F2EBDF"/>
+					<rectangle>
+						<reportElement uuid="bb2f6f87-ef36-4851-82b7-3bd23c44bf52" mode="Opaque" x="21" y="0" width="36" height="24" backcolor="#736343"/>
+						<graphicElement>
+							<pen lineWidth="0.0"/>
+						</graphicElement>
+					</rectangle>
+					<textField>
+						<reportElement uuid="1b2eed39-9596-49b7-a473-4b07f69b906c" style="SubTitle" x="68" y="0" width="508" height="24" forecolor="#736343"/>
+						<textElement>
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{penyewaan_no_penyewaan}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<group name="penyewaan_id_penyewa">
+		<groupExpression><![CDATA[$F{penyewaan_id_penyewa}]]></groupExpression>
+		<groupHeader>
+			<band height="30">
+				<textField>
+					<reportElement uuid="7bbde59b-dd86-4d5c-ab36-c7abfdf385ba" style="SubTitle" x="0" y="4" width="460" height="20"/>
+					<textElement>
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{penyewaan_id_penyewa}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="penyewa_nama">
+		<groupExpression><![CDATA[$F{penyewa_nama}]]></groupExpression>
+	</group>
+	<group name="penyewaan_tgl_sewa">
+		<groupExpression><![CDATA[$F{penyewaan_tgl_sewa}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="126" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="60afdfa6-6157-47b7-aef2-c0ea806e2635" style="Title" x="170" y="0" width="263" height="62"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Laporan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0fa47f08-efdd-4768-b299-95c812d17b94" style="SubTitle" x="219" y="62" width="213" height="22"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Laporan Daftar Penyewaan]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="e2600ccd-9fe2-4f60-ae34-6a3c36424ed9" positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="0e4053a2-fc68-4926-b5fa-2090f83430dd" style="Column header" x="0" y="0" width="69" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Pengembalian]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8847e45c-7fc0-4bb4-b19c-0260a1352d10" style="Column header" x="69" y="0" width="69" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Dikembalikan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="26d333fb-6871-4e23-b8ad-50594a1a0449" style="Column header" x="138" y="0" width="69" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Total Biaya]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a1f29f19-0c64-4dd3-a322-8c279396ef22" style="Column header" x="207" y="0" width="69" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2a59c693-1c8d-4c6b-a741-3d2c9c54b902" style="Column header" x="276" y="0" width="69" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Penyewa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="63bca03b-6214-4c6d-8eac-29925d0ef350" style="Column header" x="345" y="0" width="69" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Kontak Penyewa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c72ec692-8093-4d8c-8183-30708caf2561" style="Column header" x="414" y="0" width="69" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Alamat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2a38abd2-f007-45d8-978b-5ba2e9588517" style="Column header" x="483" y="0" width="69" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[Admin]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement uuid="05b6d074-688a-475a-984a-50dccae01d4f" style="Row" mode="Opaque" x="0" y="0" width="555" height="15"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="b61d3d4e-4fc1-46ca-bdd7-ad425ca720c8" style="Detail" x="0" y="0" width="69" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{penyewaan_tgl_pengembalian}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="1f1442f9-4533-4c68-b60f-90c1be35b585" style="Detail" x="69" y="0" width="69" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{penyewaan_tgl_dikembalikan}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="52bb42b6-7f5c-4246-86ee-1b2356a99cd9" style="Detail" x="138" y="0" width="69" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{penyewaan_total_biaya_sewa}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="5b266487-c2a6-4b2e-8293-842d14dc6f49" style="Detail" x="207" y="0" width="69" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{penyewaan_status}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="e9dc5218-40ae-49a1-bedf-4ba089f7e759" style="Detail" x="345" y="0" width="69" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{penyewa_no_tlp}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="8494f063-8e72-46e6-ba8a-ee7bfcd8e9ea" style="Detail" x="414" y="0" width="69" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{penyewa_alamat}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="414d6039-a82f-442b-80b0-3219f638e6a6" style="Detail" x="276" y="0" width="69" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{admin_nama}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="2210f513-ad67-4653-a586-054c71e3476a" style="Detail" x="483" y="0" width="69" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{penyewaan_penanggung_jawab}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement uuid="2f247863-4aff-40ea-9a85-bddf3fe688a1" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement uuid="d653bc49-6c59-4835-8985-02c029678df2" mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF"/>
+				<textField evaluationTime="Report">
+					<reportElement uuid="d48e328e-14b3-4d9b-b2e5-ee3bfcb8bfa9" style="Column header" x="533" y="0" width="40" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="3102b7eb-2285-488c-b99f-ee22183b46fb" style="Column header" x="453" y="0" width="80" height="20" forecolor="#736343"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="b9dada85-e763-4455-badc-d385b520d731" style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
